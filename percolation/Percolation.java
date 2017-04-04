@@ -1,6 +1,12 @@
+import java.util.Arrays;
 
 public class Percolation {
 	
+	private final int n;
+	
+	private int nbOpen;
+	
+	private int[][] grid;
 	
 	/**
 	 * Create n-by-n grid, with all sites blocked
@@ -8,7 +14,18 @@ public class Percolation {
 	 * @param n
 	 */
 	public Percolation(int n) {
-
+		if (n <= 0) {
+			throw new IllegalArgumentException();
+		}
+		
+		int[][] newGrid = new int[n][n];
+		for (int[] row : newGrid) {
+			Arrays.fill(row, 1);
+		}
+		
+		this.n = n;
+		this.grid = newGrid;
+		this.nbOpen = 0;
 	}
 
 	/**
@@ -18,6 +35,9 @@ public class Percolation {
 	 * @param col
 	 */
 	public void open(int row, int col) {
+		if (n <= 0) {
+			throw new IllegalArgumentException();
+		}
 
 	}
 
@@ -29,8 +49,11 @@ public class Percolation {
 	 * @return
 	 */
 	public boolean isOpen(int row, int col) {
+		if (row <= 0 || col <= 0) {
+			throw new IllegalArgumentException();
+		}
 
-		return true;
+		return grid[row-1][col-1] == 0;
 	}
 
 	/**
@@ -41,8 +64,11 @@ public class Percolation {
 	 * @return
 	 */
 	public boolean isFull(int row, int col) {
+		if (row <= 0 || col <= 0) {
+			throw new IllegalArgumentException();
+		}
 		
-		return true;
+		return !isOpen(row, col);
 	}
 
 	/**
@@ -69,6 +95,7 @@ public class Percolation {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
+		Percolation test3 = new Percolation(3);
+		System.out.println("tto");
 	}
 }
